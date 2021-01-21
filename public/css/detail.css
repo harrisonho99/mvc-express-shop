@@ -1,0 +1,26 @@
+body {
+  text-align: center;
+}
+.main-wrapper {
+  padding: 20px;
+}
+img {
+  width: 70%;
+  min-width: 300px;
+  max-width: 600px;
+  margin: auto;
+}
+.midle-price {
+  display: flex;
+}
+.midle-price > h2 {
+  flex: 1;
+}
+.midle-price > form {
+  flex: 1;
+  display: flex;
+}
+.midle-price > form > button {
+  margin: auto;
+  height: 40px;
+}

@@ -1,0 +1,40 @@
+:root {
+  --main-bg-color: rgb(228, 87, 164);
+  --secondary-color: rgb(113, 25, 255);
+}
+.form-control {
+  margin: 1rem 0;
+}
+
+.form-control label,
+.form-control input,
+.form-control textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.25rem;
+}
+.form-control input {
+  height: 2rem;
+}
+.form-control input,
+.form-control textarea {
+  border: 1px solid var(--secondary-color);
+  font: inherit;
+  border-radius: 7px;
+  outline: none;
+  resize: none;
+  box-shadow: none;
+  appearance: none;
+}
+.form-control input:focus,
+.form-control textarea:focus {
+  border: 2px solid var(--main-bg-color);
+}
+.form-control-btn {
+  display: flex;
+  justify-content: center;
+}
+/* .form-control input:focus,
+.form-control textarea:focus {
+  outline-color: var(--main-bg-color);
+} */
