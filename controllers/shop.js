@@ -33,8 +33,15 @@ exports.getIndex = (_, res) => {
 
 exports.getCart = (_, res) => {
   Cart.getCart((cart) => {
+    const cartProducts = [];
+    if (!cart) {
+      return res.render('shop/cart', {
+        cartProducts,
+        path: '/cart',
+        pageTitle: 'Your Cart',
+      });
+    }
     Product.fetchAll((products) => {
-      const cartProducts = [];
       for (product of products) {
         const cartProductData = cart.products.find(
           (prod) => prod.id === product.id
