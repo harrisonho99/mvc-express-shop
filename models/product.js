@@ -8,7 +8,7 @@ const p = path.join(
   'data',
   'products.json'
 );
-
+const dir = path.join(path.dirname(process.mainModule.filename), 'data');
 const getProductsFromFile = (cb) => {
   fs.readFile(p, (err, fileContent) => {
     if (err) {
@@ -30,7 +30,7 @@ module.exports = class Product {
 
   save() {
     getProductsFromFile((products) => {
-      // if has no id mean edting product
+      // if has id mean edting product
       if (this.id) {
         const existingProductIndex = products.findIndex(
           (prod) => prod.id === this.id
@@ -38,7 +38,7 @@ module.exports = class Product {
         const updatedProduct = [...products];
         updatedProduct[existingProductIndex] = this;
         fs.writeFile(p, JSON.stringify(updatedProduct), (err) => {
-          console.log('Product---', err);
+          console.log('Product---Edit', err);
         });
       } else {
         // add new Product
@@ -47,9 +47,16 @@ module.exports = class Product {
           40
         )();
         products.push(this);
-        fs.writeFile(p, JSON.stringify(products), (err) => {
-          console.log('Product---', err);
-        });
+        if (!fs.existsSync(dir)) {
+          fs.mkdirSync(dir);
+          fs.writeFile(p, JSON.stringify(products), (err) => {
+            console.log('Product---AddProduct', err);
+          });
+        } else {
+          fs.writeFile(p, JSON.stringify(products), (err) => {
+            console.log('Product---AddProduct', err);
+          });
+        }
       }
     });
   }
